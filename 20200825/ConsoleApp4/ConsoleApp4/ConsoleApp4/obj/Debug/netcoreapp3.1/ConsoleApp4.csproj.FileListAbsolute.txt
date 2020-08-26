@@ -1,0 +1,13 @@
+C:\Users\chris\source\repos\christiangiliberti\PlataformasDeDesarrollo\20200825\ConsoleApp4\ConsoleApp4\ConsoleApp4\obj\Debug\netcoreapp3.1\ConsoleApp4.csprojAssemblyReference.cache
+C:\Users\chris\source\repos\christiangiliberti\PlataformasDeDesarrollo\20200825\ConsoleApp4\ConsoleApp4\ConsoleApp4\obj\Debug\netcoreapp3.1\ConsoleApp4.AssemblyInfoInputs.cache
+C:\Users\chris\source\repos\christiangiliberti\PlataformasDeDesarrollo\20200825\ConsoleApp4\ConsoleApp4\ConsoleApp4\obj\Debug\netcoreapp3.1\ConsoleApp4.AssemblyInfo.cs
+C:\Users\chris\source\repos\christiangiliberti\PlataformasDeDesarrollo\20200825\ConsoleApp4\ConsoleApp4\ConsoleApp4\obj\Debug\netcoreapp3.1\ConsoleApp4.csproj.CoreCompileInputs.cache
+C:\Users\chris\source\repos\christiangiliberti\PlataformasDeDesarrollo\20200825\ConsoleApp4\ConsoleApp4\ConsoleApp4\bin\Debug\netcoreapp3.1\ConsoleApp4.exe
+C:\Users\chris\source\repos\christiangiliberti\PlataformasDeDesarrollo\20200825\ConsoleApp4\ConsoleApp4\ConsoleApp4\bin\Debug\netcoreapp3.1\ConsoleApp4.deps.json
+C:\Users\chris\source\repos\christiangiliberti\PlataformasDeDesarrollo\20200825\ConsoleApp4\ConsoleApp4\ConsoleApp4\bin\Debug\netcoreapp3.1\ConsoleApp4.runtimeconfig.json
+C:\Users\chris\source\repos\christiangiliberti\PlataformasDeDesarrollo\20200825\ConsoleApp4\ConsoleApp4\ConsoleApp4\bin\Debug\netcoreapp3.1\ConsoleApp4.runtimeconfig.dev.json
+C:\Users\chris\source\repos\christiangiliberti\PlataformasDeDesarrollo\20200825\ConsoleApp4\ConsoleApp4\ConsoleApp4\bin\Debug\netcoreapp3.1\ConsoleApp4.dll
+C:\Users\chris\source\repos\christiangiliberti\PlataformasDeDesarrollo\20200825\ConsoleApp4\ConsoleApp4\ConsoleApp4\bin\Debug\netcoreapp3.1\ConsoleApp4.pdb
+C:\Users\chris\source\repos\christiangiliberti\PlataformasDeDesarrollo\20200825\ConsoleApp4\ConsoleApp4\ConsoleApp4\obj\Debug\netcoreapp3.1\ConsoleApp4.dll
+C:\Users\chris\source\repos\christiangiliberti\PlataformasDeDesarrollo\20200825\ConsoleApp4\ConsoleApp4\ConsoleApp4\obj\Debug\netcoreapp3.1\ConsoleApp4.pdb
+C:\Users\chris\source\repos\christiangiliberti\PlataformasDeDesarrollo\20200825\ConsoleApp4\ConsoleApp4\ConsoleApp4\obj\Debug\netcoreapp3.1\ConsoleApp4.genruntimeconfig.cache
