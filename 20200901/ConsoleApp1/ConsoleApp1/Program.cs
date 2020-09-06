@@ -9,7 +9,6 @@ namespace ConsoleApp1
 
             Console.WriteLine("El juego consiste en adivinar un numero del 1 al 20), \ntenes 3 chances para hacerlo");
 
-
             Random random = new Random();
             int numSecreto = random.Next(20)+1;
             int chance = 0;
@@ -24,58 +23,30 @@ namespace ConsoleApp1
                 if (chance == 3)
 
                     {
-                        Console.Write("Perdiste, el numero era el : " + numSecreto);
+                        Perdiste(numSecreto);
+                        //Console.Write("Perdiste, el numero era el : " + numSecreto);
                         break;
                     }
                 Console.Write("No adivinaste, segui intentando\n");
             }
                 else
             {
-                Console.Write("Felicitaciones, ganaste!");
+                Ganaste();
+                //Console.Write("Felicitaciones, ganaste!");
                 break;
             }
 
+                static void Ganaste()
+                {
+                    Console.WriteLine("Felicitaciones, ganaste!");
+                }
 
-            /*
-            Random random = new Random();
-            int secreto = random.Next(10);
-            int numero = 0;
-            for (int i = 0; i < 3; i++)
-            {
-                IngreseElNumero("Ingrese el numero ", ref numero);
+                static void Perdiste(int num)
+                {
+                    Console.Write("Perdiste, el numero era el : " + num);
+                }
 
-                if (numero == secreto) break;
             }
-            string resultado;
-            if (numero == secreto)
-            {
-                resultado = Ganaste();
-            }
-            else
-            {
-                resultado = Perdiste(secreto);
-            }
-            Console.WriteLine(resultado);
-            }
-
-             static int IngreseElNumero(string mensaje, ref int numero)
-            {
-            Console.WriteLine(mensaje);
-            string valor = Console.ReadLine();
-            return int.Parse(valor);
-             }
-
-            static string Ganaste()
-            {
-            string mensaje = "Ganaste";
-            return mensaje;
-             }
-            static string Perdiste(int valor)
-            {
-            return "Perdiste el numero era " + valor;
-            */
-
         }
-    }
     }
 }
