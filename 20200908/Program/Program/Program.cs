@@ -12,6 +12,7 @@ namespace Program
             Console.WriteLine("Hello World!");
             Calculadora calculadora = new Calculadora();
             Class1 clase = new Class1();
+            //tambien se puede Classlibrary1.DAL.db (nombre completo)
 
         }
     }

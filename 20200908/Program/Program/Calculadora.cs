@@ -18,5 +18,21 @@ namespace Program
     class Calculadora
     {
 
+        private int numero1;
+
+        public int Numero1
+        {
+            get
+            {
+                return numero1;
+            }
+            set
+            {
+                numero1 = value;
+            }
+        }
+
     }
+
+
 }
