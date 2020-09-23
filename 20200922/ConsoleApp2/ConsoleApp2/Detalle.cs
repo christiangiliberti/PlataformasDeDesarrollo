@@ -6,7 +6,7 @@ namespace ConsoleApp2
 {
     class Detalle
     {
-        public string Fecha { get; set; }
+        public DateTime Fecha { get; set; }
         public string Tiempo { get; set; }
         public Recurso Recurso { get; set; }
         public Tarea Tarea { get; set; }
