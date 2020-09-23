@@ -4,7 +4,9 @@ using System.Text;
 
 namespace ConsoleApp2
 {
-    class Usuarios
+    public class Usuario
     {
+        public string User { get; set; }
+        public string Clave { get; set; }
     }
 }
