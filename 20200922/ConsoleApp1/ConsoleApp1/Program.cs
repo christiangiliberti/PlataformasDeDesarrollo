@@ -15,7 +15,7 @@ namespace ConsoleApp1
             miauto.Marca = "Civic";
             miauto.Motor = new CuatroCilindros();
             if(camion is Auto){
-                ((Auto)miauto).Puertas = 10;
+                ((Auto)camion).Puertas = 10;
             }
             
 
