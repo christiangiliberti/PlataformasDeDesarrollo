@@ -16,10 +16,12 @@ namespace ConsoleApp1
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Usuario>().ToTable("Usuario");
+            modelBuilder.Entity<Usuario>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Usuario>().Property(p => p.User).HasMaxLength(20);
             modelBuilder.Entity<Usuario>().Property(p => p.Clave).IsRequired();
 
             modelBuilder.Entity<Tarea>().ToTable("Tarea");
+            modelBuilder.Entity<Tarea>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Tarea>().Property(p => p.Titulo).HasMaxLength(20);
             modelBuilder.Entity<Tarea>().Property(p => p.Vencimiento).IsRequired();
 

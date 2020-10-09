@@ -9,9 +9,10 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Insertar();
+            //Insertar();
             //Borrado();
-
+            //Consultar();
+            Actualizacion();
         }
         
         static void Insertar()
@@ -20,9 +21,9 @@ namespace ConsoleApp1
 
             ctx.Set<Usuario>().Add(new Usuario
             {
-                Id = 2,
+                //Id = 2,
                 User="Test2",
-                Clave ="112233"
+                Clave ="11111"
 
             });
 
@@ -35,6 +36,26 @@ namespace ConsoleApp1
             var ctx = new TareasDbContext();
             var usuario = ctx.Usuarios.Where(i => i.Id == 2).Single();
             ctx.Usuarios.Remove(usuario);
+            ctx.SaveChanges();
+        }
+
+        static void Consultar()
+        {
+            var ctx = new TareasDbContext();
+
+            var lista = ctx.Usuarios.ToList();
+            foreach (var item in lista)
+            {
+                Console.WriteLine($"Id:{item.Id} \nNombre: {item.User}");
+            }
+        }
+
+        static void Actualizacion()
+        {
+            var ctx = new TareasDbContext();
+            var lista = ctx.Usuarios.Where(i => i.Id == 4).ToList();
+            lista[0].User = "Pedro";
+            lista[0].Clave = "123456";
             ctx.SaveChanges();
         }
 
