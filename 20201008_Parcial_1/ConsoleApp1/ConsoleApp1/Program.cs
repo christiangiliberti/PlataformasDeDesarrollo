@@ -9,56 +9,77 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            //Insertar();
-            //Borrado();
-            //Consultar();
-            Actualizacion();
+            //InsertarUsuario();
+            //BorrarUsuario();
+            //ConsultarUsuario();
+            ActualizarUsuario();
+            //InsertarTarea();
+           
         }
         
-        static void Insertar()
+        static void InsertarUsuario()
         {
-            var ctx = new TareasDbContext();
+            var bd = new TareasDbContext();
 
-            ctx.Set<Usuario>().Add(new Usuario
+            bd.Set<Usuario>().Add(new Usuario
             {
                 //Id = 2,
-                User="Test2",
-                Clave ="11111"
+                User="Test8",
+                Clave ="22222"
 
             });
 
-            ctx.SaveChanges();
+            bd.SaveChanges();
 
         }
 
-        static void Borrado()
+        static void BorrarUsuario()
         {
-            var ctx = new TareasDbContext();
-            var usuario = ctx.Usuarios.Where(i => i.Id == 2).Single();
-            ctx.Usuarios.Remove(usuario);
-            ctx.SaveChanges();
+            var bd = new TareasDbContext();
+            var user= bd.Usuarios.Where(i => i.Id == 8).Single();
+            bd.Usuarios.Remove(user);
+            bd.SaveChanges();
         }
 
-        static void Consultar()
+        static void ConsultarUsuario()
         {
-            var ctx = new TareasDbContext();
+            var bd = new TareasDbContext();
 
-            var lista = ctx.Usuarios.ToList();
-            foreach (var item in lista)
+            var list = bd.Usuarios.ToList();
+            foreach (var item in list)
             {
                 Console.WriteLine($"Id:{item.Id} \nNombre: {item.User}");
             }
         }
 
-        static void Actualizacion()
+        static void ActualizarUsuario()
         {
-            var ctx = new TareasDbContext();
-            var lista = ctx.Usuarios.Where(i => i.Id == 4).ToList();
-            lista[0].User = "Pedro";
-            lista[0].Clave = "123456";
-            ctx.SaveChanges();
+            var bd = new TareasDbContext();
+            var list = bd.Usuarios.Where(i => i.Id == 9).ToList();
+            list[0].User = "Pedro";
+            list[0].Clave = "123456";
+            bd.SaveChanges();
         }
 
+        static void InsertarTarea()
+        {
+            var bd = new TareasDbContext();
+            var list = bd.Usuarios.Where(i => i.Id == 2).ToList();
+            bd.Set<Tarea>().Add(new Tarea
+            {
+                //Id = 2,
+                Titulo= "Tarea 1",
+                Vencimiento = new DateTime (2008, 10, 1),
+                Estimacion = new DateTime(2008, 10, 1),
+                Responsable = new Recurso {Nombre = "Router", Usuario = list[0] },
+                ResponsableId = 2,
+                Estado = true,
+            });
+
+            bd.SaveChanges();
+
+        }
 
     }
 }
+
