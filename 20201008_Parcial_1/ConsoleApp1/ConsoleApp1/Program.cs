@@ -8,14 +8,14 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            
+
             //InsertarUsuario();
             //BorrarUsuario();
             ConsultarUsuario();
             //ActualizarUsuario();
             //InsertarTarea();
             //InsertarRecurso();
-
+            //ConsultarRecurso();
 
         }
         
@@ -26,8 +26,8 @@ namespace ConsoleApp1
             bd.Set<Usuario>().Add(new Usuario{
 
                 //Id = 2,
-                User="Test8",
-                Clave ="22222"
+                User="Test9",
+                Clave ="123456"
 
             });
 
@@ -37,7 +37,7 @@ namespace ConsoleApp1
 
         static void BorrarUsuario(){
             var bd = new TareasDbContext();
-            var user= bd.Usuarios.Where(i => i.Id == 7).Single();
+            var user= bd.Usuarios.Where(i => i.Id == 10).Single();
             bd.Usuarios.Remove(user);
             bd.SaveChanges();
         }
@@ -56,8 +56,8 @@ namespace ConsoleApp1
         static void ActualizarUsuario()
         {
             var bd = new TareasDbContext();
-            var list = bd.Usuarios.Where(i => i.Id == 6).ToList();
-            list[0].User = "Laura";
+            var list = bd.Usuarios.Where(i => i.Id == 5).ToList();
+            list[0].User = "Test5";
             list[0].Clave = "654321";
             bd.SaveChanges();
         }
@@ -97,6 +97,16 @@ namespace ConsoleApp1
 
         }
 
+
+        static void ConsultarRecurso(){
+            var bd = new TareasDbContext();
+
+            var list = bd.Recurso.ToList();
+            foreach (var item in list)
+            {
+                Console.WriteLine($"Id:{item.Id} \nNombre: {item.Nombre}");
+            }
+        }
 
     }
 }
