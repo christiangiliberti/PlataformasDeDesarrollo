@@ -14,15 +14,17 @@ namespace ConsoleApp1
             ConsultarUsuario();
             //ActualizarUsuario();
             //InsertarTarea();
-           
+            //InsertarRecurso();
+
+
         }
         
         static void InsertarUsuario()
         {
             var bd = new TareasDbContext();
 
-            bd.Set<Usuario>().Add(new Usuario
-            {
+            bd.Set<Usuario>().Add(new Usuario{
+
                 //Id = 2,
                 User="Test8",
                 Clave ="22222"
@@ -33,10 +35,9 @@ namespace ConsoleApp1
 
         }
 
-        static void BorrarUsuario()
-        {
+        static void BorrarUsuario(){
             var bd = new TareasDbContext();
-            var user= bd.Usuarios.Where(i => i.Id == 8).Single();
+            var user= bd.Usuarios.Where(i => i.Id == 7).Single();
             bd.Usuarios.Remove(user);
             bd.SaveChanges();
         }
@@ -55,9 +56,9 @@ namespace ConsoleApp1
         static void ActualizarUsuario()
         {
             var bd = new TareasDbContext();
-            var list = bd.Usuarios.Where(i => i.Id == 9).ToList();
-            list[0].User = "Pedro";
-            list[0].Clave = "123456";
+            var list = bd.Usuarios.Where(i => i.Id == 6).ToList();
+            list[0].User = "Laura";
+            list[0].Clave = "654321";
             bd.SaveChanges();
         }
 
@@ -79,6 +80,23 @@ namespace ConsoleApp1
             bd.SaveChanges();
 
         }
+
+
+        static void InsertarRecurso(){
+            var bd = new TareasDbContext();
+            var list = bd.Usuarios.Where(i => i.Id == 9).ToList();
+            bd.Set<Recurso>().Add(new Recurso{
+
+                //Id = 2,
+                Nombre = "Recurso3",
+                Usuario = list[0],
+
+            });
+
+            bd.SaveChanges();
+
+        }
+
 
     }
 }
