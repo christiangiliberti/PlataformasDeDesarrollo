@@ -8,11 +8,11 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
             //InsertarUsuario();
             //BorrarUsuario();
-            //ConsultarUsuario();
-            ActualizarUsuario();
+            ConsultarUsuario();
+            //ActualizarUsuario();
             //InsertarTarea();
            
         }
