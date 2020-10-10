@@ -10,8 +10,8 @@ namespace ConsoleApp1
         {
             
             //InsertarUsuario();
-            BorrarUsuario();
-            //ConsultarUsuario();
+            //BorrarUsuario();
+            ConsultarUsuario();
             //ActualizarUsuario();
             //InsertarTarea();
            
