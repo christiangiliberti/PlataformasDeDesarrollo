@@ -1,0 +1,50 @@
+﻿@page "/ListadoDetalles"
+
+@using BlazorApp1.Data
+@inject DetalleService  ServicioDetalle
+
+<h1>Listado de Detalles</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (detalle == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>Tiempo</th>
+                <th>Recurso</th>
+                <th>Tarea</th>
+                <th>TareaId</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var f in detalle)
+            {
+            <tr>
+                <td>@f.Id</td>
+                <td>@f.Fecha</td>
+                <td>@f.Tiempo</td>
+                <td>@f.Recurso</td>
+                <td>@f.Tarea</td>
+                <td>@f.TareaId</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Detalle [] detalle;
+
+    protected override async Task OnInitializedAsync()
+    {
+        detalle = ServicioDetalle.GetDatalles();
+    }
+}
