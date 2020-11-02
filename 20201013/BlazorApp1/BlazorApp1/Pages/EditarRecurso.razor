@@ -1,0 +1,49 @@
+﻿@page "/EditarRecurso/{id:int}"
+@using BlazorApp1.Data
+@inject RecursoService service
+@inject NavigationManager navigation
+
+
+<EditForm Model="@Recurso" OnValidSubmit="@Guardar">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    Id: <InputNumber @bind-Value="Recurso.Id" />
+    Nombre: <InputText @bind-Value="Recurso.Nombre" />
+
+    <button type="submit">Guardar</button>
+</EditForm>
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    public Recurso Recurso { get; set; } = new Recurso();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id > 0)
+        {
+            Recurso = await service.Get(Id);
+        }
+        else
+        {
+            Recurso = new Recurso();
+        }
+    }
+
+
+    private async void Guardar()
+    {
+        await service.Save(Recurso);
+        navigation.NavigateTo("/listadoRecursos");
+    }
+
+    //Usuario:<InputNumber @bind-Value="Recurso.Usuario" />
+}
+
+
+
+
+

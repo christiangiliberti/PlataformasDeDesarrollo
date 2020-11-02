@@ -1,13 +1,16 @@
 ﻿@page "/ListadoTareas"
-
 @using BlazorApp1.Data
 @inject TareaService  ServicioTarea
+@inject NavigationManager navigation
+@inject IJSRuntime JsRuntime
 
 <h1>Listado de Tareas</h1>
 
+<button class="btn" @onclick="()=>Editar(0)">Nuevo</button>
+
 <p>This component demonstrates fetching data from a service.</p>
 
-@if (tarea == null)
+@if (tareas == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -21,10 +24,11 @@ else
                 <th>Vencimiento</th>
                 <th>Estimacion</th>
                 <th>Estado</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var f in tarea)
+            @foreach (var f in tareas)
             {
             <tr>
                 <td>@f.Id</td>
@@ -32,6 +36,7 @@ else
                 <td>@f.Vencimiento</td>
                 <td>@f.Estimacion</td>
                 <td>@f.Estado</td>
+                <td><button class="btn" @onclick="()=>Editar(f.Id)">Editar</button> <button class="btn" @onclick="()=>Borrar(f.Id)">Borrar</button></td>
             </tr>
             }
         </tbody>
@@ -39,10 +44,34 @@ else
 }
 
 @code {
+    /*
     private Tarea[] tarea;
 
     protected override async Task OnInitializedAsync()
     {
         tarea = ServicioTarea.GetTareas();
+    }
+    */
+
+    private List<Tarea> tareas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        tareas = await ServicioTarea.GetAll();
+    }
+
+    protected void Editar(int id)
+    {
+        navigation.NavigateTo("/EditarTarea/" + id);
+    }
+
+    async Task Borrar(int id)
+    {
+        bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Desea elimiar una tarea?");
+        if (confirmed)
+        {
+            await ServicioTarea.Remove(id);
+            tareas = await ServicioTarea.GetAll();
+        }
     }
 }

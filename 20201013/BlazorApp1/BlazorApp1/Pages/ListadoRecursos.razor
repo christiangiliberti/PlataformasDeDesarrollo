@@ -2,10 +2,13 @@
 
 @using BlazorApp1.Data
 @inject RecursoService  ServicioRecurso
+@inject NavigationManager navigation
+@inject IJSRuntime JsRuntime
+
 
 <h1>Listado de Recursos</h1>
 
-<p>This component demonstrates fetching data from a service.</p>
+<button class="btn" @onclick="()=>Editar(0)">Nuevo</button>
 
 @if (recurso == null)
 {
@@ -18,7 +21,8 @@ else
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
-                <th>Usuario</th>
+                
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -27,7 +31,8 @@ else
                 <tr>
                     <td>@f.Id</td>
                     <td>@f.Nombre</td>
-                    <td>@f.Usuario</td>
+                    
+                    <td><button class="btn" @onclick="()=>Editar(f.Id)">Editar</button> <button class="btn" @onclick="()=>Borrar(f.Id)">Borrar</button></td>
                 </tr>
             }
         </tbody>
@@ -35,10 +40,39 @@ else
 }
 
 @code {
+    //<th>Usuario</th>
+    //<td>@f.Usuario</td>
+
+
+    /*
     private Recurso[] recurso;
 
     protected override async Task OnInitializedAsync()
     {
         recurso = ServicioRecurso.GetRecursos();
+    }
+    */
+
+
+    private List<Recurso> recurso;
+
+    protected override async Task OnInitializedAsync()
+    {
+        recurso = await ServicioRecurso.GetAll();
+    }
+
+    protected void Editar(int id)
+    {
+        navigation.NavigateTo("/EditarRecurso/" + id);
+    }
+
+    async Task Borrar(int id)
+    {
+        bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Desea elimiar a este recurso?");
+        if (confirmed)
+        {
+            await ServicioRecurso.Remove(id);
+            recurso = await ServicioRecurso.GetAll();
+        }
     }
 }

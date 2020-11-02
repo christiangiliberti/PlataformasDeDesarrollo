@@ -11,12 +11,12 @@ namespace ConsoleApp1
 
             //InsertarUsuario();
             //BorrarUsuario();
-            ConsultarUsuario();
+            //ConsultarUsuario();
             //ActualizarUsuario();
             //InsertarTarea();
-            //InsertarRecurso();
+            InsertarRecurso();
             //ConsultarRecurso();
-
+            
         }
         
         static void InsertarUsuario()
@@ -107,6 +107,8 @@ namespace ConsoleApp1
                 Console.WriteLine($"Id:{item.Id} \nNombre: {item.Nombre}");
             }
         }
+
+
 
     }
 }

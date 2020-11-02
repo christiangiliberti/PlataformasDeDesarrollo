@@ -1,13 +1,16 @@
-﻿@page "/ListadoUsuarios"
-
+﻿@page "/listadoUsuarios"
 @using BlazorApp1.Data
 @inject UsuarioService  ServicioUsuario
+@inject NavigationManager navigation
+@inject IJSRuntime JsRuntime
 
 <h1>Listado de Usuarios</h1>
 
+<button class="btn" @onclick="()=>Editar(0)">Nuevo</button>
+
 <p>This component demonstrates fetching data from a service.</p>
 
-@if (usuario == null)
+@if (usuarios == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -17,28 +20,51 @@ else
         <thead>
             <tr>
                 <th>Id</th>
-                <th>User</th>
-                <th>Clave</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var f in usuario)
+            @foreach (var item in usuarios)
             {
-                <tr>
-                    <td>@f.Id</td>
-                    <td>@f.User</td>
-                    <td>@f.Clave</td>
-                </tr>
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.User</td>
+                <td><button class="btn" @onclick="()=>Editar(item.Id)">Editar</button> <button class="btn" @onclick="()=>Borrar(item.Id)">Borrar</button></td>
+            </tr>
             }
         </tbody>
     </table>
 }
 
 @code {
+    /*
     private Usuario[] usuario;
 
     protected override async Task OnInitializedAsync()
     {
         usuario = ServicioUsuario.GetUsuarios();
+
+    }*/
+    private List<Usuario> usuarios;
+
+    protected override async Task OnInitializedAsync()
+    {
+        usuarios = await ServicioUsuario.GetAll();
+    }
+
+    protected void Editar(int id)
+    {
+        navigation.NavigateTo("/EditarUsuario/" + id);
+    }
+
+    async Task Borrar(int id)
+    {
+        bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Desea elimiar el usuario?");
+        if (confirmed)
+        {
+            await ServicioUsuario.Remove(id);
+            usuarios = await ServicioUsuario.GetAll();
+        }
     }
 }

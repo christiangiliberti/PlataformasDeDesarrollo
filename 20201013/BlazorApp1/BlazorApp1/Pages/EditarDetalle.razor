@@ -1,0 +1,48 @@
+﻿@page "/Editardetalle/{id:int}"
+@using BlazorApp1.Data
+@inject DetalleService service
+@inject NavigationManager navigation
+
+
+<EditForm Model="@Detalle" OnValidSubmit="@Guardar">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    Id: <InputNumber @bind-Value="Detalle.Id" />
+    Fecha: <InputDate @bind-Value="Detalle.Fecha" />
+    Tiempo: <InputDate @bind-Value="Detalle.Tiempo" />
+
+
+    TareaId <InputNumber @bind-Value="Detalle.TareaId" />
+    <button type="submit">Guardar</button>
+</EditForm>
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    public Detalle Detalle { get; set; } = new Detalle();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id > 0)
+        {
+            Detalle = await service.Get(Id);
+        }
+        else
+        {
+            Detalle = new Detalle();
+        }
+    }
+
+
+    private async void Guardar()
+    {
+        await service.Save(Detalle);
+        navigation.NavigateTo("/listadoDetalles");
+    }
+
+    //Usuario:<InputNumber @bind-Value="Recurso.Usuario" />
+}
+

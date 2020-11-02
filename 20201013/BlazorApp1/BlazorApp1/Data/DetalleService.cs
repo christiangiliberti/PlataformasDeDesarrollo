@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +17,51 @@ namespace BlazorApp1.Data
             return list;
 
         }
+
+
+
+
+        private TareasDbContext context;
+
+        public DetalleService(TareasDbContext _context)
+        {
+            context = _context;
+        }
+
+        public async Task<Detalle> Get(int id)
+        {
+            return await context.Detalle.Where(i => i.Id == id).SingleAsync();
+        }
+
+        public async Task<List<Detalle>> GetAll()
+        {
+            return await context.Detalle.ToListAsync();
+        }
+
+        public async Task<Detalle> Save(Detalle value)
+        {
+            if (value.Id == 0)
+            {
+                await context.Detalle.AddAsync(value);
+            }
+            else
+            {
+                context.Detalle.Update(value);
+            }
+            await context.SaveChangesAsync();
+            return value;
+        }
+
+        public async Task<bool> Remove(int id)
+        {
+            var entidad = await context.Detalle.Where(i => i.Id == id).SingleAsync();
+            context.Detalle.Remove(entidad);
+            await context.SaveChangesAsync();
+            return true;
+        }
+
+
+
 
         /*
         public Detalle [] GetDatallesAsync()
