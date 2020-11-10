@@ -6,9 +6,9 @@
 
 <h1>Listado de Usuarios</h1>
 
-<button class="btn" @onclick="()=>Editar(0)">Nuevo</button>
+<button type="button" class="btn btn-primary" @onclick="()=>Editar(0)">Nuevo</button>
 
-<p>This component demonstrates fetching data from a service.</p>
+
 
 @if (usuarios == null)
 {
@@ -27,11 +27,11 @@ else
         <tbody>
             @foreach (var item in usuarios)
             {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.User</td>
-                <td><button class="btn" @onclick="()=>Editar(item.Id)">Editar</button> <button class="btn" @onclick="()=>Borrar(item.Id)">Borrar</button></td>
-            </tr>
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.User</td>
+                    <td><button type="button" class="btn btn-success" @onclick="()=>Editar(item.Id)">Editar</button> <button type="button" class="btn btn-danger" @onclick="()=>Borrar(item.Id)">Borrar</button></td>
+                </tr>
             }
         </tbody>
     </table>
@@ -40,11 +40,9 @@ else
 @code {
     /*
     private Usuario[] usuario;
-
     protected override async Task OnInitializedAsync()
     {
         usuario = ServicioUsuario.GetUsuarios();
-
     }*/
     private List<Usuario> usuarios;
 

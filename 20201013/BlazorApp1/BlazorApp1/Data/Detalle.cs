@@ -22,6 +22,7 @@ namespace BlazorApp1.Data
         public DateTime Fecha { get; set; }
         public DateTime Tiempo { get; set; }
         public Recurso Recurso { get; set; }
+        public int RecursoId { get; set; }
         public Tarea Tarea { get; set; }
         public int TareaId { get; set; }
     }

@@ -8,7 +8,7 @@
 
 <h1>Listado de Recursos</h1>
 
-<button class="btn" @onclick="()=>Editar(0)">Nuevo</button>
+<button type="button" class="btn btn-primary" @onclick="()=>Editar(0)">Nuevo</button>
 
 @if (recurso == null)
 {
@@ -21,7 +21,7 @@ else
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
-                
+
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -31,8 +31,8 @@ else
                 <tr>
                     <td>@f.Id</td>
                     <td>@f.Nombre</td>
-                    
-                    <td><button class="btn" @onclick="()=>Editar(f.Id)">Editar</button> <button class="btn" @onclick="()=>Borrar(f.Id)">Borrar</button></td>
+
+                    <td><button type="button" class="btn btn-success" @onclick="()=>Editar(f.Id)">Editar</button> <button type="button" class="btn btn-danger" @onclick="()=>Borrar(f.Id)">Borrar</button></td>
                 </tr>
             }
         </tbody>
@@ -46,7 +46,6 @@ else
 
     /*
     private Recurso[] recurso;
-
     protected override async Task OnInitializedAsync()
     {
         recurso = ServicioRecurso.GetRecursos();

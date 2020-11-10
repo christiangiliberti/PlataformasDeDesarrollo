@@ -70,6 +70,12 @@ namespace BlazorApp1.Data
         }
 
         */
+        public async Task<List<Usuario>> GetUsuarios()
+        {
+            return await context.Usuarios.ToListAsync();
+        }
+
+
 
     }
 }

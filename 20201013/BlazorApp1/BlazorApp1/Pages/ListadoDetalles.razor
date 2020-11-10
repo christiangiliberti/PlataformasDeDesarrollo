@@ -6,7 +6,7 @@
 
 <h1>Listado de Detalles</h1>
 
-<button class="btn" @onclick="()=>Editar(0)">Nuevo</button>
+<button type="button" class="btn btn-primary"  @onclick="()=>Editar(0)">Nuevo</button>
 
 @if (Detalle == null)
 {
@@ -20,7 +20,7 @@ else
                 <th>Id</th>
                 <th>Fecha</th>
                 <th>Tiempo</th>
-                
+
                 <th>TareaId</th>
                 <th>Acciones</th>
             </tr>
@@ -28,14 +28,14 @@ else
         <tbody>
             @foreach (var f in Detalle)
             {
-            <tr>
-                <td>@f.Id</td>
-                <td>@f.Fecha</td>
-                <td>@f.Tiempo</td>
-                
-                <td>@f.TareaId</td>
-                <td><button class="btn" @onclick="()=>Editar(f.Id)">Editar</button> <button class="btn" @onclick="()=>Borrar(f.Id)">Borrar</button></td>
-            </tr>
+                <tr>
+                    <td>@f.Id</td>
+                    <td>@f.Fecha</td>
+                    <td>@f.Tiempo</td>
+
+                    <td>@f.TareaId</td>
+                    <td><button type="button" class="btn btn-success" @onclick="()=>Editar(f.Id)">Editar</button> <button type="button" class="btn btn-danger" @onclick="()=>Borrar(f.Id)">Borrar</button></td>
+                </tr>
             }
         </tbody>
     </table>
@@ -43,11 +43,8 @@ else
 
 @code {
     /*
-
     <th>Recurso</th>
     <th>Tarea</th>
-
-
     <td>@f.Recurso</td>
     <td>@f.Tarea</td>
     */
@@ -56,7 +53,6 @@ else
 
     /*
     private Detalle[] detalle;
-
     protected override async Task OnInitializedAsync()
     {
         detalle = ServicioDetalle.GetDatalles();

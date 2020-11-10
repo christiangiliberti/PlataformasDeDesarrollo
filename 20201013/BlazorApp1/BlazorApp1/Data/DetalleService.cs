@@ -72,5 +72,18 @@ namespace BlazorApp1.Data
             return res;
         }
         */
+
+        public async Task<List<Recurso>> GetRecurso()
+        {
+            return await context.Recurso.ToListAsync();
+        }
+
+
+        public async Task<List<Tarea>> GetTarea()
+        {
+            return await context.Tarea.ToListAsync();
+        }
+
+
     }
 }
