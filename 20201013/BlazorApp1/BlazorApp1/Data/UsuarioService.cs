@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Model.Entidades;
+using Refit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,20 +37,24 @@ namespace BlazorApp1.Data
 
         public async Task<List<Usuario>> GetAll()
         {
-            return await context.Usuarios.ToListAsync();
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
+
+            return await remoteService.GetAllUsuarios();
         }
 
         public async Task<Usuario> Save(Usuario value)
         {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
+
             if (value.Id == 0)
             {
                 await context.Usuarios.AddAsync(value);
+                await context.SaveChangesAsync();
             }
             else
             {
-                context.Usuarios.Update(value);
+                await remoteService.EditUsuario(value);
             }
-            await context.SaveChangesAsync();
             return value;
         }
 
