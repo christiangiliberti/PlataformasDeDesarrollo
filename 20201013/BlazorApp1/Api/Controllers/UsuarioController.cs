@@ -29,14 +29,22 @@ namespace Api.Controllers
         }
 
         /*
-        [HttpPut]
-        public Usuario EditUsuario(Usuario value)
-        {
-            _context.Usuarios.Update(value);
-            _context.SaveChanges();
-            return value;
-        }
-        */
-        
+       [HttpGet("{id}")]
+
+       public Usuario GetUsuario(int id)
+       {
+           Usuario usuario = _context.Usuarios.(id);
+           return usuario;
+       }
+
+       
+       public Usuario EditUsuario(Usuario value)
+       {
+           _context.Usuarios.Update(value);
+           _context.SaveChanges();
+           return value;
+       }
+       */
+
     }
 }

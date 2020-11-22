@@ -10,6 +10,7 @@ namespace BlazorApp1.Data
 {
     public class UsuarioService
     {
+        
         public Usuario[] GetUsuarios()
         {
             var bd = new TareasDbContext();
@@ -19,6 +20,7 @@ namespace BlazorApp1.Data
             return list;
             
         }
+        
 
 
 
@@ -29,19 +31,26 @@ namespace BlazorApp1.Data
         {
             context = _context;
         }
-
+        
         public async Task<Usuario> Get(int id)
         {
             return await context.Usuarios.Where(i => i.Id == id).SingleAsync();
         }
-
+        /*
+        public async Task<Usuario> Get(int id)
+        {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api/Usuario");
+            return await context.Usuarios.Where(i => i.Id == id).SingleAsync();
+        }
+        */
+        
         public async Task<List<Usuario>> GetAll()
         {
             var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
 
             return await remoteService.GetAllUsuarios();
         }
-
+        
         public async Task<Usuario> Save(Usuario value)
         {
             var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
@@ -57,7 +66,7 @@ namespace BlazorApp1.Data
             }
             return value;
         }
-
+        
         public async Task<bool> Remove(int id)
         {
             var entidad = await context.Usuarios.Where(i => i.Id == id).SingleAsync();
@@ -65,7 +74,7 @@ namespace BlazorApp1.Data
             await context.SaveChangesAsync();
             return true;
         }
-
+        
         /*
         public Usuario[] GetUsuarios()
         {
