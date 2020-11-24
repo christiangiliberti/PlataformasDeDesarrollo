@@ -42,6 +42,7 @@ namespace BlazorApp1.Data
             var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api/Usuario");
             return await context.Usuarios.Where(i => i.Id == id).SingleAsync();
         }
+
         */
         
         public async Task<List<Usuario>> GetAll()
