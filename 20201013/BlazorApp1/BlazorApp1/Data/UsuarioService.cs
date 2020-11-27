@@ -10,7 +10,7 @@ namespace BlazorApp1.Data
 {
     public class UsuarioService
     {
-        
+        /*
         public Usuario[] GetUsuarios()
         {
             var bd = new TareasDbContext();
@@ -20,7 +20,7 @@ namespace BlazorApp1.Data
             return list;
             
         }
-        
+        */
 
 
 
@@ -31,19 +31,18 @@ namespace BlazorApp1.Data
         {
             context = _context;
         }
-        
-        public async Task<Usuario> Get(int id)
-        {
-            return await context.Usuarios.Where(i => i.Id == id).SingleAsync();
-        }
         /*
         public async Task<Usuario> Get(int id)
         {
-            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api/Usuario");
             return await context.Usuarios.Where(i => i.Id == id).SingleAsync();
         }
-
         */
+        public async Task<Usuario> Get(int id)
+        {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
+            return await remoteService.GetUsuario(id);
+        }
+                
         
         public async Task<List<Usuario>> GetAll()
         {
@@ -58,8 +57,7 @@ namespace BlazorApp1.Data
 
             if (value.Id == 0)
             {
-                await context.Usuarios.AddAsync(value);
-                await context.SaveChangesAsync();
+                await remoteService.CreateUsuario(value);
             }
             else
             {
@@ -67,7 +65,18 @@ namespace BlazorApp1.Data
             }
             return value;
         }
-        
+
+
+        public async Task<Usuario> Remove (int id)
+        {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
+
+            return await remoteService.DeleteUsuario(id);
+        }
+
+
+
+        /*
         public async Task<bool> Remove(int id)
         {
             var entidad = await context.Usuarios.Where(i => i.Id == id).SingleAsync();
@@ -75,7 +84,7 @@ namespace BlazorApp1.Data
             await context.SaveChangesAsync();
             return true;
         }
-        
+        */
         /*
         public Usuario[] GetUsuarios()
         {

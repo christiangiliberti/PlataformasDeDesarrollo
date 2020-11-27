@@ -6,7 +6,7 @@ using Api.Data;
 using Model.Entidades;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Controllers
 {
@@ -21,30 +21,48 @@ namespace Api.Controllers
             _context = context;
         }
 
-        [HttpGet]
+       [HttpGet]
 
         public List<Usuario> GetAll()
         {
             return _context.Usuarios.ToList();
         }
 
-        /*
+       
        [HttpGet("{id}")]
 
-       public Usuario GetUsuario(int id)
+       public Usuario Get(int id)
        {
-           Usuario usuario = _context.Usuarios.(id);
+           Usuario usuario =  _context.Usuarios.Where(i => i.Id == id).SingleOrDefault();
            return usuario;
        }
 
-       
-       public Usuario EditUsuario(Usuario value)
+       [HttpPut]
+        public Usuario EditUsuario(Usuario value)
        {
-           _context.Usuarios.Update(value);
+           Usuario usuarioeditar = _context.Usuarios.Find(value.Id);
+           usuarioeditar.Clave = value.Clave;
+           usuarioeditar.User = value.User;
            _context.SaveChanges();
            return value;
        }
-       */
 
+        [HttpPost]
+        public Usuario CreateUsuario(Usuario value)
+        {
+            _context.Usuarios.Add(value);
+            _context.SaveChanges();
+            return value;
+        }
+
+
+        [HttpDelete("{id}")]
+        public Usuario DeleteUsuario(int id)
+        {
+            Usuario usuarioborrar = _context.Usuarios.Find(id);
+            _context.Usuarios.Remove(usuarioborrar);
+            _context.SaveChanges();
+            return usuarioborrar;
+        }
     }
 }

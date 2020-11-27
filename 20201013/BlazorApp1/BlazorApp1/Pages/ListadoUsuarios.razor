@@ -1,5 +1,6 @@
 ﻿@page "/listadoUsuarios"
 @using BlazorApp1.Data
+@using Model.Entidades
 @inject UsuarioService  ServicioUsuario
 @inject NavigationManager navigation
 @inject IJSRuntime JsRuntime
@@ -56,7 +57,7 @@ else
         navigation.NavigateTo("/EditarUsuario/" + id);
     }
 
-    async Task Borrar(int id)
+    protected async Task Borrar(int id)
     {
         bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Desea elimiar el usuario?");
         if (confirmed)

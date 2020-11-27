@@ -10,7 +10,7 @@ namespace BlazorApp1.Data
 {
     public class RecursoService
     {
-
+        /*
         public Recurso[] GetRecursos ()
         {
             var bd = new TareasDbContext();
@@ -20,7 +20,7 @@ namespace BlazorApp1.Data
             return list;
 
         }
-
+        */
 
 
         private TareasDbContext context;
@@ -30,6 +30,53 @@ namespace BlazorApp1.Data
             context = _context;
         }
 
+
+        public async Task<Recurso> Get(int id)
+        {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
+            return await remoteService.GetRecurso(id);
+        }
+
+
+        public async Task<List<Recurso>> GetAll()
+        {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
+
+            return await remoteService.GetAllRecursos();
+        }
+
+        public async Task<Recurso> Save(Recurso value)
+        {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
+
+            if (value.Id == 0)
+            {
+                await remoteService.CreateRecurso(value);
+            }
+            else
+            {
+                await remoteService.EditRecurso(value);
+            }
+            return value;
+        }
+
+
+        public async Task<Recurso> Remove(int id)
+        {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
+
+            return await remoteService.DeleteRecurso(id);
+        }
+
+
+        public async Task<List<Usuario>> GetUsuarios()
+        {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
+
+            return await remoteService.GetAllUsuarios();
+        }
+
+        /*
         public async Task<Recurso> Get(int id)
         {
             return await context.Recurso.Where(i => i.Id == id).SingleAsync();
@@ -39,7 +86,7 @@ namespace BlazorApp1.Data
         {
             return await context.Recurso.ToListAsync();
         }
-        */
+        
         public async Task<List<Recurso>> GetAll()
         {
             var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
@@ -79,13 +126,13 @@ namespace BlazorApp1.Data
             return res;
         }
 
-        */
+        
         public async Task<List<Usuario>> GetUsuarios()
         {
             return await context.Usuarios.ToListAsync();
         }
 
-
+        */
 
     }
 }

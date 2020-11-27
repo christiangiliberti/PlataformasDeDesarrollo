@@ -10,6 +10,7 @@ namespace BlazorApp1.Data
 {
     public class TareaService
     {
+        /*
         public Tarea [] GetTareas()
         {
             var bd = new TareasDbContext();
@@ -18,7 +19,7 @@ namespace BlazorApp1.Data
 
             return list;
         }
-
+        */
 
 
 
@@ -28,12 +29,12 @@ namespace BlazorApp1.Data
         {
             context = _context;
         }
-
+        /*
         public async Task<Tarea> Get(int id)
         {
             return await context.Tarea.Where(i => i.Id == id).SingleAsync();
         }
-        /*
+        
         public async Task<List<Tarea>> GetAll()
         {
             return await context.Tarea.ToListAsync();
@@ -46,7 +47,38 @@ namespace BlazorApp1.Data
             return await remoteService.GetAllTareas();
         }
 
+        public async Task<Tarea> Get(int id)
+        {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
+            return await remoteService.GetTarea(id);
+        }
 
+
+        public async Task<Tarea> Save(Tarea value)
+        {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
+
+            if (value.Id == 0)
+            {
+                await remoteService.CreateTarea(value);
+            }
+            else
+            {
+                await remoteService.EditTarea(value);
+            }
+            return value;
+        }
+
+
+        public async Task<Tarea> Remove(int id)
+        {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
+
+            return await remoteService.DeleteTarea(id);
+        }
+
+
+        /*
         public async Task<Tarea> Save(Tarea value)
         {
             if (value.Id == 0)

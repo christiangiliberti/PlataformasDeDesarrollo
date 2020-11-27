@@ -10,6 +10,7 @@ namespace BlazorApp1.Data
 {
     public class DetalleService
     {
+        /*
         public Detalle[] GetDatalles()
         {
             var bd = new TareasDbContext();
@@ -19,8 +20,7 @@ namespace BlazorApp1.Data
             return list;
 
         }
-
-
+        */
 
 
         private TareasDbContext context;
@@ -30,16 +30,69 @@ namespace BlazorApp1.Data
             context = _context;
         }
 
+
+        public async Task<List<Detalle>> GetAll(int Id)
+        {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
+
+            return await remoteService.GetAllDetalles(Id);
+        }
+
+        public async Task<Detalle> Get(int id)
+        {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
+            return await remoteService.GetDetalle(id);
+        }
+
+
+        public async Task<Detalle> Save(Detalle value)
+        {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
+
+            if (value.Id == 0)
+            {
+                await remoteService.CreateDetalle(value);
+            }
+            else
+            {
+                await remoteService.EditDetalle(value);
+            }
+            return value;
+        }
+
+        public async Task<Detalle> Remove(int id)
+        {
+            var remoteService = RestService.For<IRemoteService>("https://localhost:44366/api");
+
+            return await remoteService.DeleteDetalle(id);
+        }
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
         public async Task<Detalle> Get(int id)
         {
             return await context.Detalle.Where(i => i.Id == id).SingleAsync();
         }
-        /*
+        
         public async Task<List<Detalle>> GetAll()
         {
             return await context.Detalle.ToListAsync();
         }
-        */
+        
 
         public async Task<List<Detalle>> GetAll()
         {
@@ -83,7 +136,7 @@ namespace BlazorApp1.Data
             return res;
         }
         */
-
+        /*
         public async Task<List<Recurso>> GetRecurso()
         {
             return await context.Recurso.ToListAsync();
@@ -94,7 +147,7 @@ namespace BlazorApp1.Data
         {
             return await context.Tarea.ToListAsync();
         }
-
+        */
 
     }
 }

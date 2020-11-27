@@ -1,8 +1,10 @@
 ﻿@page "/ListadoTareas"
 @using BlazorApp1.Data
+@using Model.Entidades
 @inject TareaService  ServicioTarea
 @inject NavigationManager navigation
 @inject IJSRuntime JsRuntime
+
 
 <h1>Listado de Tareas</h1>
 
@@ -35,7 +37,11 @@ else
                     <td>@f.Vencimiento</td>
                     <td>@f.Estimacion</td>
                     <td>@f.Estado</td>
-                    <td><button type="button" class="btn btn-success" @onclick="()=>Editar(f.Id)">Editar</button> <button type="button" class="btn btn-danger" @onclick="()=>Borrar(f.Id)">Borrar</button></td>
+
+                    <td><button type="button" class="btn btn-primary" @onclick="()=>VerDetalleTarea(f.Id)" >Detalles</button></td>
+                    <td><button type="button" class="btn btn-success" @onclick="()=>Editar(f.Id)">Editar</button></td>
+                    <td><button type="button" class="btn btn-danger" @onclick="()=>Borrar(f.Id)">Borrar</button></td>
+
                 </tr>
             }
         </tbody>
@@ -63,7 +69,7 @@ else
         navigation.NavigateTo("/EditarTarea/" + id);
     }
 
-    async Task Borrar(int id)
+    protected async Task Borrar(int id)
     {
         bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Desea elimiar una tarea?");
         if (confirmed)
@@ -71,5 +77,10 @@ else
             await ServicioTarea.Remove(id);
             tareas = await ServicioTarea.GetAll();
         }
+    }
+
+    protected void VerDetalleTarea(int id)
+    {
+        navigation.NavigateTo("/ListadoDetalles/" + id);
     }
 }
